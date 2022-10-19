@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  clang:
+    image: musl-clang:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CC: clang
+    volumes:
+      - .:/host:rw
+    working_dir: /host
+    entrypoint: musl-clang
+
+  gcc:
+    image: musl-gcc:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        CC: gcc
+    volumes:
+      - .:/host:rw
+    working_dir: /host
+    entrypoint: musl-gcc
